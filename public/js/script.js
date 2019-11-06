@@ -22,8 +22,18 @@ function envoie() {
         dataType: "json"
       })
     .done(function(data) {
+        $('#temporaire').append(
+            '<p id=jeu_' + data.id + '>' +
+            'Titre : ' + data.titre +
+            '. Éditeur : ' + data.editeur +
+            '. Prix : ' + data.prix +
+            ' €. Resumer : ' + data.resume + '. ' 
+            + "<button onclick='suppression( " + data.id + " )'>Supprimer</button>"
+            + "</p>"
+        );
+
         //affichage(data);  //affichage les données (voire plus bas)
-        console.log(data);
+        //console.log(data);
     })
     .fail(function(status) {
         if (status.status === 422){
@@ -33,3 +43,19 @@ function envoie() {
         //alert("erreur 404");
     })
 };
+
+function getList(){
+
+    $.ajax({
+        method: "GET",
+        url: "/api/jeux/all",
+        dataType: "json"
+    }).done(function(data) {
+        console.log(data);
+    }).fail(function(){
+        console.log('erreur 404 - getList');
+    })
+    
+}
+
+getList();

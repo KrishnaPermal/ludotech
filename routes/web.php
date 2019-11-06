@@ -16,9 +16,11 @@ Route::get('/', 'JeuxController@index'); // le chemin get qui pointe vers l'url 
 
 Route::prefix('api')->group(function () {
     Route::prefix('jeux')->group(function () {
-        Route::post('add', 'JeuxController@add');
+        Route::post('add', 'JeuxController@add'); // api/jeux/add
+        Route::get('all', 'JeuxController@all'); // api/jeux/all
     });
-    // api/jeux/add
+    
+    
     
     //Peut ajouter autre groupe ou route /api/..
 });

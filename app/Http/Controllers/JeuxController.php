@@ -13,9 +13,6 @@ class JeuxController extends Controller
     }
 
     function add (Request $request){
-
-
-    
         $array= Validator::make($request->all(), [
             'titre' => 'required|max:255',
             'editeur' => 'required',
@@ -30,4 +27,12 @@ class JeuxController extends Controller
 
         return json_encode($array);
     }
+
+
+    function all(){
+     $listeJeux= DB::table('jeux')->get();
+        return json_encode($listeJeux);
+    }
+
+
 }
